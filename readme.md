@@ -8,14 +8,13 @@ git checkout
 rm -rf .git
 ```
 
-
 # сборка проекта make-jar-with-dependencies
 ```php
 # собираем и запускаем
 mvn clean package
 java -jar target/*jar-with-dependencies.jar
 ```
-### добавть в `pom.xml`  заменив `mainClass`
+### добавить в `pom.xml`  заменив `mainClass`
 ```xml
     <build>
         <plugins>

@@ -1,5 +1,6 @@
 target
-*.iml# development environment
+*.iml
+# development environment
 .idea
 *.sublime-project
 *.sublime-workspace
