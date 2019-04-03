@@ -8,4 +8,9 @@ public class HelloServiceImpl implements HelloService {
     public String hello(String name) {
         return "Hello " + name;
     }
+
+    public String buy(String name) {
+        return "Buy " + name;
+    }
+    
 }

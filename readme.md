@@ -12,10 +12,32 @@ rm -rf .git
 ```php
 # собираем и запускаем
 mvn clean package
-java -jar target/*jar-with-dependencies.jar
+java -jar target/*.jar
 ```
 ### добавить в `pom.xml`  заменив `mainClass`
 ```xml
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>ru.otus.spring.Main</mainClass>
+                </configuration>
+                  <executions>
+                    <execution>
+                      <goals>
+                        <goal>repackage</goal>
+                      </goals>
+                    </execution>
+                </executions>
+            </plugin>
+	    </plugins>
+    </build>
+
+    
     <build>
         <plugins>
             <plugin>

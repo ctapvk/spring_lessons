@@ -22,4 +22,13 @@ public class HelloCommands {
         // invoke service
         return service.hello(name);
     }
+
+    @ShellMethod("Translate text from one language to another.")
+    public String buy(
+            @ShellOption String name
+    ) {
+        // invoke service
+        return service.buy(name);
+    }
+
 }
