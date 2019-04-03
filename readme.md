@@ -6,6 +6,10 @@ git h
 git checkout
 # удалаем папку гита
 rm -rf .git
+
+# lazy git push
+echo "commit mess: " && read message && git add . && git commit -m "${message}" && git push
+echo "commit mess: " && read message && echo "${message}"
 ```
 
 # сборка проекта make-jar-with-dependencies
