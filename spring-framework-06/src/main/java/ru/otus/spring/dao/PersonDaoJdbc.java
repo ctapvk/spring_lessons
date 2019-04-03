@@ -9,6 +9,7 @@ import ru.otus.spring.domain.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,25 +17,32 @@ import java.util.Map;
 @Repository
 public class PersonDaoJdbc implements PersonDao {
 
-    private final JdbcOperations jdbc;
+    private final NamedParameterJdbcOperations jdbc;
 
-    public PersonDaoJdbc(JdbcOperations jdbcOperations) {
+    public PersonDaoJdbc(NamedParameterJdbcOperations jdbcOperations) {
         jdbc = jdbcOperations;
     }
 
     @Override
     public int count() {
-        return jdbc.queryForObject("select count(*) from persons", Integer.class);
+        final HashMap<String, Object> params = new HashMap<>(1);
+        return jdbc.queryForObject("select count(*) from persons",params , Integer.class );
     }
 
     @Override
     public void insert(Person person) {
-        jdbc.update("insert into persons (id, `name`) values (?, ?)", person.getId(), person.getName());
+        final HashMap<String, Object> params = new HashMap<>(1);
+        params.put("id",person.getId());
+        params.put("name",person.getName());
+
+        jdbc.update("insert into persons (id, `name`) values (:id, :name)", params);
     }
 
     @Override
     public Person getById(int id) {
-        return jdbc.queryForObject("select * from persons where id = ?", new Object[] {id}, new PersonMapper());
+        final HashMap<String, Object> params = new HashMap<>(1);
+        params.put("id",id);
+        return jdbc.queryForObject("select * from persons where id = :id", params, new PersonMapper());
     }
 
     @Override
