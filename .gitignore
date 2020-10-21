@@ -15,3 +15,5 @@ vendor
 composer.lock
 *.log
 *.json
+node_modules
+
